@@ -4,7 +4,7 @@ const apiKey = "e2d838addde4c3e26a61a53bde32a41c";
 
 searchButton.addEventListener("click", function () {
   const city = searchCity.value;
-  console.log(city);
+  console.log("city on click", city);
   currentWeather(city);
 });
 
@@ -16,9 +16,29 @@ function currentWeather(city) {
       console.log(res);
       return res.json();
     })
-    .then((data) => {
-      console.log(data);
-      fiveDayWeather(data.coord.lat, data.coord.lon);
+    .then((wData) => {
+      console.log("data from weather API", wData);
+      const forecast = fiveDayWeather(wData.coord.lat, wData.coord.lon);
+      const currentDate = dayjs().format("MMMM D, YYYY"); // current date
+      const currentIcon = wData.weather[0].icon; // current weather icon
+      const currentWeather = wData.weather[0].description; // current weather description
+      const currentTemp = wData.main.temp; // current temperature in farenheit
+      const currentHumidity = wData.main.humidity; // current humidity
+      const currentWind = wData.wind.speed; // current wind speed
+
+      //     const icon = document.createElement("img");
+      //     icon.setAttribute(
+      //       "src",
+      //       `https://openweathermap.org/img/wn/${imgCode}@2x.png`
+      //     );
+      //     weatherWidget(
+      //       imgCode,
+      //       "Temperature: " + temperature + " °F",
+      //       "Humidity: " + humidity + " %",
+      //       currentDate,
+      //       "Wind Speed: " + currentWind + " mph",
+      //       cityName
+      //     );
     });
 }
 
@@ -35,41 +55,13 @@ function fiveDayWeather(lat, long) {
     });
 }
 
-currentWeather(city)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    const currentDate = dayjs().format("MMMM D, YYYY"); // current date
-    const currentIcon = icon(data); // current weather icon
-    const currentWeather = description(data); // current weather description
-    const currentTemp = temp(data); // current temperature in farenheit
-    const currentHumidy = humidity(data); // current humidity
-    const currentWind = speed(data); // current wind speed
-
-    const imgCode = data.weather[0].icon; // variale for current weather image symbol
-    const icon = document.createElement("img");
-    icon.setAttribute(
-      "src",
-      `https://openweathermap.org/img/wn/${imgCode}@2x.png`
-    );
-    weatherWidget(
-      "Temperature: " + temperature + " °F",
-      "Humidity: " + humidity + " %",
-      "Temp. feels like " + butfeelsLike + " °F",
-      currentDate,
-      "Wind Speed: " + windSpeed + " mph",
-      imgCode,
-      cityName
-    );
-  });
-locationInput.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    searchButton.click();
-    document.location.href = "#mapWeatherdata"; // to prevent page from going to recent searches after clicking enter
-  }
-});
+// locationInput.addEventListener("keyup", function (event) {
+//   if (event.key === "Enter") {
+//     event.preventDefault();
+//     searchButton.click();
+//     document.location.href = "#mapWeatherdata"; // to prevent page from going to recent searches after clicking enter
+//   }
+// });
 
 // /* display current weather */
 // function displayCurrentWeather(data) {
