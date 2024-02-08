@@ -34,3 +34,19 @@ function fiveDayWeather(lat, long) {
       console.log(data);
     });
 }
+
+/* display current weather */
+function displayCurrentWeather(data) {
+  // Update the HTML elements with the relevant weather data
+  document.querySelector("#todaysWeatherCard .currentSearch").textContent =
+    data.name;
+  document.querySelector(
+    "#todaysWeatherCard .currentTemp"
+  ).textContent = `Temperature: ${data.main.temp} °F`;
+  document.querySelector(
+    "#todaysWeatherCard .currentWind"
+  ).textContent = `Wind Speed: ${data.wind.speed} mph`;
+  document.querySelector(
+    "#todaysWeatherCard .currentHumidy"
+  ).textContent = `Humidity: ${data.main.humidity}%`;
+}
