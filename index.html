@@ -17,7 +17,6 @@
       <nav class="navbar bg-header-mine">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <!-- change this img later -->
             <img
               src="assets/images/C5F02B2D-1E76-4AD7-A376-75569D65BD94.png"
               alt="Logo"
@@ -55,9 +54,9 @@
           <!-- Buttons for previous searches in Local History -->
           <div>
             <ul id="recent-searches" class="list-group list-group-flush">
+              <!-- Recent search buttons will be populated dynamically here -->
               <button
                 type="button"
-                value="cityToSearch1"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #1
@@ -65,7 +64,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch2"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #2
@@ -73,7 +71,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch3"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #3
@@ -81,7 +78,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch4"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #4
@@ -89,7 +85,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch5"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #5
@@ -97,7 +92,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch6"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #6
@@ -105,7 +99,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch7"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #7
@@ -113,7 +106,6 @@
               <br />
               <button
                 type="button"
-                value="cityToSearch8"
                 class="recent-search-button btn btn-primary"
               >
                 City Search #8
@@ -121,111 +113,43 @@
             </ul>
           </div>
         </div>
-
         <div class="col-sm-12 col-md-8">
           <!-- Retrieved Data from City Search for current day -->
           <div id="todaysWeatherCard">
             <div class="card invisible">
-              <div class="card-body">
-                <h3>City placeholder</h3>
-                <h4 class="currentTime">Time placeholder</h4>
-                <br />
-                <div class="weatherIcon">
-                  <img src="" alt="" />Icon placeholder
-                </div>
-                <br />
-                add weather description
-                <div class="currentTemp">Temp placeholder</div>
-                <div class="currentWind">Wind placeholder</div>
-                <div class="currentHumid">Humidity placeholder</div>
-              </div>
+              <!-- Content will be dynamically inserted here -->
             </div>
           </div>
           <br />
           <div class="row">
             <!-- Day 1 Forecast Card -->
-            <div class="col">
-              <div id="day1WeatherCard">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="day1Forcast">Proper Date placeholder</h5>
-                    <h6 class="day1Icon mb-2 text-body-secondary">
-                      Weather Icon Day 1 placeholder
-                    </h6>
-                    <br />
-                    <div class="day1Temp">Day 1 Temp placeholder</div>
-                    <div class="day1Wind">Day 1 Wind placeholder</div>
-                    <div class="day1Humid">Day 1 Humidity placeholder</div>
-                  </div>
-                </div>
+            <div id="day1WeatherCard" class="col">
+              <div class="card">
+                <!-- Content will be dynamically inserted here -->
               </div>
             </div>
             <!-- Day 2 Forecast Card -->
-            <div class="col">
-              <div id="day2WeatherCard">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="day1Forcast">Proper Date placeholder</h5>
-                    <h6 class="day1Icon mb-2 text-body-secondary">
-                      Weather Icon Day 2 placeholder
-                    </h6>
-                    <br />
-                    <div class="day1Temp">Day 2 Temp placeholder</div>
-                    <div class="day1Wind">Day 2 Wind placeholder</div>
-                    <div class="day1Humid">Day 2 Humidity placeholder</div>
-                  </div>
-                </div>
+            <div id="day2WeatherCard" class="col">
+              <div class="card">
+                <!-- Content will be dynamically inserted here -->
               </div>
             </div>
             <!-- Day 3 Forecast Card -->
-            <div class="col">
-              <div id="day3WeatherCard">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="day1Forcast">Proper Date placeholder</h5>
-                    <h6 class="day1Icon mb-2 text-body-secondary">
-                      Weather Icon Day 3 placeholder
-                    </h6>
-                    <br />
-                    <div class="day1Temp">Day 3 Temp placeholder</div>
-                    <div class="day1Wind">Day 3 Wind placeholder</div>
-                    <div class="day1Humid">Day 3 Humidity placeholder</div>
-                  </div>
-                </div>
+            <div id="day3WeatherCard" class="col">
+              <div class="card">
+                <!-- Content will be dynamically inserted here -->
               </div>
             </div>
             <!-- Day 4 Forecast Card -->
-            <div class="col">
-              <div id="day4WeatherCard">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="day1Forcast">Proper Date placeholder</h5>
-                    <h6 class="day1Icon mb-2 text-body-secondary">
-                      Weather Icon Day 4 placeholder
-                    </h6>
-                    <br />
-                    <div class="day1Temp">Day 4 Temp placeholder</div>
-                    <div class="day1Wind">Day 4 Wind placeholder</div>
-                    <div class="day1Humid">Day 4 Humidity placeholder</div>
-                  </div>
-                </div>
+            <div id="day4WeatherCard" class="col">
+              <div class="card">
+                <!-- Content will be dynamically inserted here -->
               </div>
             </div>
             <!-- Day 5 Forecast Card -->
-            <div class="col">
-              <div id="day5WeatherCard">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="day1Forcast">Proper Date placeholder</h5>
-                    <h6 class="day1Icon mb-2 text-body-secondary">
-                      Weather Icon Day 5 placeholder
-                    </h6>
-                    <br />
-                    <div class="day1Temp">Day 5 Temp placeholder</div>
-                    <div class="day1Wind">Day 5 Wind placeholder</div>
-                    <div class="day1Humid">Day 5 Humidity placeholder</div>
-                  </div>
-                </div>
+            <div id="day5WeatherCard" class="col">
+              <div class="card">
+                <!-- Content will be dynamically inserted here -->
               </div>
             </div>
           </div>
