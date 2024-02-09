@@ -81,3 +81,9 @@ function fiveDayWeather(lat, long) {
       return futureForecast;
     });
 }
+
+function renderSearchButtons() {
+  // get recent Searches From Local Storage. Default to an empty array
+  // loop over recent searches and display a button for each search
+}
+renderSearchButtons();
