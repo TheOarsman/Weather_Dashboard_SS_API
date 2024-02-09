@@ -110,18 +110,14 @@ function fiveDayWeather(lat, long) {
 // Function to render search buttons with saved search history
 function renderSearchButtons() {
   const recentSearches = JSON.parse(localStorage.getItem("searches")) || [];
-  const recentSearchButtons = document.querySelectorAll(
-    ".recent-search-button"
-  );
+  const searchButtons = document.querySelectorAll(".recent-search-button");
 
-  recentSearchButtons.forEach((button, index) => {
-    if (recentSearches[index]) {
-      button.textContent = recentSearches[index];
-      button.addEventListener("click", function () {
-        currentWeather(recentSearches[index]);
-      });
-    }
-  });
+  for (let i = 0; i < recentSearches.length; i++) {
+    const city = recentSearches[i];
+    const buttonIndex = i % searchButtons.length; // Calculate the index of the button to update
+
+    searchButtons[buttonIndex].textContent = city; // Update the text content of the button
+  }
 }
 
 // Call the renderSearchButtons function after defining it
