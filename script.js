@@ -56,6 +56,7 @@ function currentWeather(city) {
       const currentDate = dayjs().format("MMMM D, YYYY");
       const currentIcon = wData.weather[0].icon;
       const currentTemp = wData.main.temp;
+      const currentFeelsLIke = wData.main.feels_like;
       const currentHumidity = wData.main.humidity;
       const currentWind = wData.wind.speed;
       const weatherIconSrc = `https://openweathermap.org/img/w/${currentIcon}.png`;
@@ -70,6 +71,7 @@ function currentWeather(city) {
     <!-- Adjust the width and height of the image using inline style -->
     <img src="${weatherIconSrc}" alt="weather image" style="width: 70px; height: 70px;">
     <h5>Temp(°F): ${currentTemp}</h5>
+    <h5>Feels Like(°F): ${currentFeelsLIke}</h5>
     <h5>Wind Speed(MPH): ${currentWind}</h5>
     <h5> Humidity: ${currentHumidity}</h5>
   </div>
