@@ -7,6 +7,7 @@ searchButton.addEventListener("click", function () {
   const city = searchCity.value;
   console.log("city on click", city);
   currentWeather(city);
+  searchCity.value = ""; // Clear the input field after the search
 });
 
 // EventListener for "Enter" key to be pressed
@@ -15,6 +16,7 @@ searchCity.addEventListener("keypress", function (e) {
     const city = searchCity.value;
     saveCityToLocalStorage(city); // Save city to local storage
     currentWeather(city);
+    searchCity.value = ""; // Clear the input field after the search
   }
 });
 
