@@ -105,20 +105,22 @@ function fiveDayWeather(lat, long) {
     });
 }
 
+// Function to render search buttons with saved search history
 function renderSearchButtons() {
-  const searchButtonContainer = document.getElementById(
-    "searchButtonContainer"
+  const recentSearches = JSON.parse(localStorage.getItem("searches")) || [];
+  const recentSearchButtons = document.querySelectorAll(
+    ".recent-search-button"
   );
-  searchButtonContainer.innerHTML = ""; // Clear previous buttons
-  const searches = JSON.parse(localStorage.getItem("searches")) || [];
-  // Create a button for each saved city
-  searches.forEach((city) => {
-    const button = document.createElement("button");
-    button.textContent = city;
-    button.classList.add("btn", "btn-primary");
-    button.addEventListener("click", function () {
-      currentWeather(city);
-    });
-    searchButtonContainer.appendChild(button);
+
+  recentSearchButtons.forEach((button, index) => {
+    if (recentSearches[index]) {
+      button.textContent = recentSearches[index];
+      button.addEventListener("click", function () {
+        currentWeather(recentSearches[index]);
+      });
+    }
   });
 }
+
+// Call the renderSearchButtons function after defining it
+renderSearchButtons();
