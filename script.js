@@ -80,7 +80,50 @@ function fiveDayWeather(lat, long) {
     .then((res) => res.json())
     .then((futureForecast) => {
       console.log(futureForecast);
-      // Handle future forecast data as needed
+      const day1ForecastDate = dayjs(futureForecast.list[6].dt_txt).format(
+        "MMMM D, YYYY"
+      );
+      const day1ForecastIcon = futureForecast.list[6].weather[0].icon;
+      const day1ForecastTemp = futureForecast.list[6].main.temp;
+      const day1ForecastHumidity = futureForecast.list[6].main.humidity;
+      const day1ForecastWind = futureForecast.list[6].wind.speed;
+      const day1weatherIconSrc = `https://openweathermap.org/img/w/${day1ForecastIcon}.png`;
+
+      const day2ForecastDate = dayjs(futureForecast.list[14].dt_txt).format(
+        "MMMM D, YYYY"
+      );
+      const day2ForecastIcon = futureForecast.list[14].weather[0].icon;
+      const day2ForecastTemp = futureForecast.list[14].main.temp;
+      const day2ForecastHumidity = futureForecast.list[14].main.humidity;
+      const day2ForecastWind = futureForecast.list[14].wind.speed;
+      const day2weatherIconSrc = `https://openweathermap.org/img/w/${day2ForecastIcon}.png`;
+
+      const day3ForecastDate = dayjs(futureForecast.list[22].dt_txt).format(
+        "MMMM D, YYYY"
+      );
+      const day3ForecastIcon = futureForecast.list[22].weather[0].icon;
+      const day3ForecastTemp = futureForecast.list[22].main.temp;
+      const day3ForecastHumidity = futureForecast.list[22].main.humidity;
+      const day3ForecastWind = futureForecast.list[22].wind.speed;
+      const day3weatherIconSrc = `https://openweathermap.org/img/w/${day3ForecastIcon}.png`;
+
+      const day4ForecastDate = dayjs(futureForecast.list[30].dt_txt).format(
+        "MMMM D, YYYY"
+      );
+      const day4ForecastIcon = futureForecast.list[30].weather[0].icon;
+      const day4ForecastTemp = futureForecast.list[30].main.temp;
+      const day4ForecastHumidity = futureForecast.list[30].main.humidity;
+      const day4ForecastWind = futureForecast.list[30].wind.speed;
+      const day4weatherIconSrc = `https://openweathermap.org/img/w/${day4ForecastIcon}.png`;
+
+      const day5ForecastDate = dayjs(futureForecast.list[38].dt_txt).format(
+        "MMMM D, YYYY"
+      );
+      const day5ForecastIcon = futureForecast.list[38].weather[0].icon;
+      const day5ForecastTemp = futureForecast.list[38].main.temp;
+      const day5ForecastHumidity = futureForecast.list[38].main.humidity;
+      const day5ForecastWind = futureForecast.list[38].wind.speed;
+      const day5weatherIconSrc = `https://openweathermap.org/img/w/${day5ForecastIcon}.png`;
     });
 }
 
