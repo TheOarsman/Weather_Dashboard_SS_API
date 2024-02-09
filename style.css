@@ -1,8 +1,37 @@
 .bg-header-mine {
-  background-color: aqua;
+  background-color: rgb(36, 76, 237);
 }
 
 .btn-clr {
   background-color: rgb(36, 76, 237);
   color: white;
+}
+
+.navbar-brand {
+  font-size: 50px; /* Font size */
+  margin-left: 20px; /* Adjust the left margin to move the text further to the right */
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.navbar-brand img {
+  width: 50px; /* Width of the image */
+  height: auto; /* Maintains aspect ratio */
+  margin-right: 20px; /* Spacing between img & text */
+}
+
+.navbar-brand img {
+  width: 75px; /* Width of the image */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 25%; /* Makes the image round */
+}
+
+nav,
+header {
+  padding-bottom: 20px; /* Padding for nav bar & header */
+}
+
+main {
+  padding-top: 20px; /* padding for main */
 }
