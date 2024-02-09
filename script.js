@@ -2,11 +2,34 @@ const searchButton = document.querySelector("#srch-btn");
 const searchCity = document.querySelector("#citySearch");
 const apiKey = "e2d838addde4c3e26a61a53bde32a41c";
 
+// EventListener for "Search" button to be clicked
 searchButton.addEventListener("click", function () {
   const city = searchCity.value;
   console.log("city on click", city);
   currentWeather(city);
 });
+
+// EventListener for "Enter" key to be pressed
+searchCity.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    const city = searchCity.value;
+    saveCityToLocalStorage(city); // Save city to local storage
+    currentWeather(city);
+  }
+});
+
+// Saving searches to Local Storage
+function saveCityToLocalStorage(city) {
+  // Retrieve existing searches from local storage or initialize an empty array
+  const searches = JSON.parse(localStorage.getItem("searches")) || [];
+  // Add the new city to the array if it's not already present
+  if (!searches.includes(city)) {
+    searches.push(city);
+    localStorage.setItem("searches", JSON.stringify(searches));
+    // Update the search buttons in the UI
+    renderSearchButtons();
+  }
+}
 
 function currentWeather(city) {
   fetch(
@@ -83,7 +106,19 @@ function fiveDayWeather(lat, long) {
 }
 
 function renderSearchButtons() {
-  // get recent Searches From Local Storage. Default to an empty array
-  // loop over recent searches and display a button for each search
+  const searchButtonContainer = document.getElementById(
+    "searchButtonContainer"
+  );
+  searchButtonContainer.innerHTML = ""; // Clear previous buttons
+  const searches = JSON.parse(localStorage.getItem("searches")) || [];
+  // Create a button for each saved city
+  searches.forEach((city) => {
+    const button = document.createElement("button");
+    button.textContent = city;
+    button.classList.add("btn", "btn-primary");
+    button.addEventListener("click", function () {
+      currentWeather(city);
+    });
+    searchButtonContainer.appendChild(button);
+  });
 }
-renderSearchButtons();
