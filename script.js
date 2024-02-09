@@ -73,7 +73,7 @@ function currentWeather(city) {
     <h5>Temp(°F): ${currentTemp}</h5>
     <h5>Feels Like(°F): ${currentFeelsLIke}</h5>
     <h5>Wind Speed(MPH): ${currentWind}</h5>
-    <h5> Humidity: ${currentHumidity}</h5>
+    <h5> Humidity: ${currentHumidity}%</h5>
   </div>
 </div>`;
       todaysWeatherCardElement.innerHTML = todaysWeatherCard;
@@ -108,7 +108,7 @@ function fiveDayWeather(city, lat, long) {
     <img src="${day1weatherIconSrc}" alt="weather image">
     <h6>Temp(°F): ${day1ForecastTemp}</h6>
     <h6>Wind Speed(MPH): ${day1ForecastWind}</h6>
-    <h6> Humidity: ${day1ForecastHumidity}</h6>
+    <h6> Humidity: ${day1ForecastHumidity}%</h6>
   </div>
 </div>`;
       day1WeatherCardElement.innerHTML = day1WeatherCard;
@@ -132,7 +132,7 @@ function fiveDayWeather(city, lat, long) {
     <img src="${day2weatherIconSrc}" alt="weather image">
     <h6>Temp(°F): ${day2ForecastTemp}</h6>
     <h6>Wind Speed(MPH): ${day2ForecastWind}</h6>
-    <h6> Humidity: ${day2ForecastHumidity}</h6>
+    <h6> Humidity: ${day2ForecastHumidity}%</h6>
   </div>
 </div>`;
       day2WeatherCardElement.innerHTML = day2WeatherCard;
@@ -156,7 +156,7 @@ function fiveDayWeather(city, lat, long) {
     <img src="${day3weatherIconSrc}" alt="weather image">
     <h6>Temp(°F): ${day3ForecastTemp}</h6>
     <h6>Wind Speed(MPH): ${day3ForecastWind}</h6>
-    <h6> Humidity: ${day3ForecastHumidity}</h6>
+    <h6> Humidity: ${day3ForecastHumidity}%</h6>
   </div>
 </div>`;
       day3WeatherCardElement.innerHTML = day3WeatherCard;
@@ -180,7 +180,7 @@ function fiveDayWeather(city, lat, long) {
     <img src="${day4weatherIconSrc}" alt="weather image">
     <h6>Temp(°F): ${day4ForecastTemp}</h6>
     <h6>Wind Speed(MPH): ${day4ForecastWind}</h6>
-    <h6> Humidity: ${day4ForecastHumidity}</h6>
+    <h6> Humidity: ${day4ForecastHumidity}%</h6>
   </div>
 </div>`;
       day4WeatherCardElement.innerHTML = day4WeatherCard;
@@ -204,7 +204,7 @@ function fiveDayWeather(city, lat, long) {
     <img src="${day5weatherIconSrc}" alt="weather image">
     <h6>Temp(°F): ${day5ForecastTemp}</h6>
     <h6>Wind Speed(MPH): ${day5ForecastWind}</h6>
-    <h6> Humidity: ${day5ForecastHumidity}</h6>
+    <h6> Humidity: ${day5ForecastHumidity}%</h6>
   </div>
 </div>`;
       day5WeatherCardElement.innerHTML = day5WeatherCard;
