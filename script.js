@@ -9,11 +9,17 @@ searchCity.addEventListener("keypress", handleSearchEnterPress);
 // Saving searches to Local Storage
 function saveCityToLocalStorage(city) {
   const searches = JSON.parse(localStorage.getItem("searches")) || [];
-  if (!searches.includes(city)) {
-    searches.push(city);
-    localStorage.setItem("searches", JSON.stringify(searches));
-    renderSearchButtons();
+
+  // Ensure only the latest 8 searches are stored
+  if (searches.length >= 8) {
+    searches.shift(); // Remove the oldest search
   }
+
+  // Add the new search to the end of the array
+  searches.push(city);
+
+  localStorage.setItem("searches", JSON.stringify(searches));
+  renderSearchButtons();
 }
 
 // Function to handle search button click
@@ -45,6 +51,7 @@ function currentWeather(city) {
   )
     .then((res) => res.json())
     .then((wData) => {
+      console.log(wData);
       //data pulled from Weather API for current day Forecast
       const currentDate = dayjs().format("MMMM D, YYYY");
       const currentIcon = wData.weather[0].icon;
@@ -58,14 +65,13 @@ function currentWeather(city) {
         document.getElementById("todaysWeatherCard");
       const todaysWeatherCard = `<div class="card">
   <div class="card-body">
-    <h3 class="currentSearch">${city}</h3>
-    <h4 class="currentTime">${currentDate}</h4>
-    <br />
-    <img src="${weatherIconSrc}" alt="weather image">
-    <br />
-    <div class="currentTemp">Temp: ${currentTemp}</div>
-    <div class="currentWind">Wind Speed: ${currentWind}</div>
-    <div class="currentHumid"> Humidity: ${currentHumidity}</div>
+    <h1>${city}</h1>
+    <h4>${currentDate}</h4>
+    <!-- Adjust the width and height of the image using inline style -->
+    <img src="${weatherIconSrc}" alt="weather image" style="width: 70px; height: 70px;">
+    <h5>Temp(°F): ${currentTemp}</h5>
+    <h5>Wind Speed(MPH): ${currentWind}</h5>
+    <h5> Humidity: ${currentHumidity}</h5>
   </div>
 </div>`;
       todaysWeatherCardElement.innerHTML = todaysWeatherCard;
@@ -96,14 +102,11 @@ function fiveDayWeather(city, lat, long) {
       const day1WeatherCardElement = document.getElementById("day1WeatherCard");
       const day1WeatherCard = `<div class="card">
   <div class="card-body">
-    <h3 class="currentSearch">${city}</h3>
-    <h4 class="currentTime">${day1ForecastDate}</h4>
-    <br />
+    <h4>${day1ForecastDate}</h4>
     <img src="${day1weatherIconSrc}" alt="weather image">
-    <br />
-    <div class="currentTemp">Temp: ${day1ForecastTemp}</div>
-    <div class="currentWind">Wind Speed: ${day1ForecastWind}</div>
-    <div class="currentHumid"> Humidity: ${day1ForecastHumidity}</div>
+    <h6>Temp(°F): ${day1ForecastTemp}</h6>
+    <h6>Wind Speed(MPH): ${day1ForecastWind}</h6>
+    <h6> Humidity: ${day1ForecastHumidity}</h6>
   </div>
 </div>`;
       day1WeatherCardElement.innerHTML = day1WeatherCard;
@@ -122,14 +125,12 @@ function fiveDayWeather(city, lat, long) {
       const day2WeatherCardElement = document.getElementById("day2WeatherCard");
       const day2WeatherCard = `<div class="card">
   <div class="card-body">
-    <h3 class="currentSearch">${city}</h3>
-    <h4 class="currentTime">${day2ForecastDate}</h4>
-    <br />
+    
+    <h4>${day2ForecastDate}</h4>
     <img src="${day2weatherIconSrc}" alt="weather image">
-    <br />
-    <div class="currentTemp">Temp: ${day2ForecastTemp}</div>
-    <div class="currentWind">Wind Speed: ${day2ForecastWind}</div>
-    <div class="currentHumid"> Humidity: ${day2ForecastHumidity}</div>
+    <h6>Temp(°F): ${day2ForecastTemp}</h6>
+    <h6>Wind Speed(MPH): ${day2ForecastWind}</h6>
+    <h6> Humidity: ${day2ForecastHumidity}</h6>
   </div>
 </div>`;
       day2WeatherCardElement.innerHTML = day2WeatherCard;
@@ -148,14 +149,12 @@ function fiveDayWeather(city, lat, long) {
       const day3WeatherCardElement = document.getElementById("day3WeatherCard");
       const day3WeatherCard = `<div class="card">
   <div class="card-body">
-    <h3 class="currentSearch">${city}</h3>
-    <h4 class="currentTime">${day3ForecastDate}</h4>
-    <br />
+    
+    <h4>${day3ForecastDate}</h4>
     <img src="${day3weatherIconSrc}" alt="weather image">
-    <br />
-    <div class="currentTemp">Temp: ${day3ForecastTemp}</div>
-    <div class="currentWind">Wind Speed: ${day3ForecastWind}</div>
-    <div class="currentHumid"> Humidity: ${day3ForecastHumidity}</div>
+    <h6>Temp(°F): ${day3ForecastTemp}</h6>
+    <h6>Wind Speed(MPH): ${day3ForecastWind}</h6>
+    <h6> Humidity: ${day3ForecastHumidity}</h6>
   </div>
 </div>`;
       day3WeatherCardElement.innerHTML = day3WeatherCard;
@@ -174,14 +173,12 @@ function fiveDayWeather(city, lat, long) {
       const day4WeatherCardElement = document.getElementById("day4WeatherCard");
       const day4WeatherCard = `<div class="card">
   <div class="card-body">
-    <h3 class="currentSearch">${city}</h3>
-    <h4 class="currentTime">${day4ForecastDate}</h4>
-    <br />
+    
+    <h4>${day4ForecastDate}</h4>
     <img src="${day4weatherIconSrc}" alt="weather image">
-    <br />
-    <div class="currentTemp">Temp: ${day4ForecastTemp}</div>
-    <div class="currentWind">Wind Speed: ${day4ForecastWind}</div>
-    <div class="currentHumid"> Humidity: ${day4ForecastHumidity}</div>
+    <h6>Temp(°F): ${day4ForecastTemp}</h6>
+    <h6>Wind Speed(MPH): ${day4ForecastWind}</h6>
+    <h6> Humidity: ${day4ForecastHumidity}</h6>
   </div>
 </div>`;
       day4WeatherCardElement.innerHTML = day4WeatherCard;
@@ -200,14 +197,12 @@ function fiveDayWeather(city, lat, long) {
       const day5WeatherCardElement = document.getElementById("day5WeatherCard");
       const day5WeatherCard = `<div class="card">
   <div class="card-body">
-    <h3 class="currentSearch">${city}</h3>
-    <h4 class="currentTime">${day5ForecastDate}</h4>
-    <br />
+    
+    <h4>${day5ForecastDate}</h4>
     <img src="${day5weatherIconSrc}" alt="weather image">
-    <br />
-    <div class="currentTemp">Temp: ${day5ForecastTemp}</div>
-    <div class="currentWind">Wind Speed: ${day5ForecastWind}</div>
-    <div class="currentHumid"> Humidity: ${day5ForecastHumidity}</div>
+    <h6>Temp(°F): ${day5ForecastTemp}</h6>
+    <h6>Wind Speed(MPH): ${day5ForecastWind}</h6>
+    <h6> Humidity: ${day5ForecastHumidity}</h6>
   </div>
 </div>`;
       day5WeatherCardElement.innerHTML = day5WeatherCard;
@@ -219,13 +214,12 @@ function renderSearchButtons() {
   const recentSearches = JSON.parse(localStorage.getItem("searches")) || [];
   const searchButtons = document.querySelectorAll(".recent-search-button");
 
-  for (let i = 0; i < recentSearches.length; i++) {
-    const city = recentSearches[i];
-    const buttonIndex = i % searchButtons.length;
-
-    searchButtons[buttonIndex].textContent = city;
-    searchButtons[buttonIndex].setAttribute("data-city", city); // Add data attribute
-    searchButtons[buttonIndex].addEventListener("click", function () {
+  // Loop over the searchButtons in reverse order and recentSearches array normally
+  for (let i = 0; i < searchButtons.length; i++) {
+    const city = recentSearches[recentSearches.length - 1 - i];
+    searchButtons[i].textContent = city || ""; // If city is undefined, set button text to empty string
+    searchButtons[i].setAttribute("data-city", city); // Add data attribute
+    searchButtons[i].addEventListener("click", function () {
       const clickedCity = this.getAttribute("data-city"); // Retrieve city from data attribute
       currentWeather(clickedCity);
     });
