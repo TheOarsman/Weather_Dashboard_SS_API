@@ -2,62 +2,55 @@ const searchButton = document.querySelector("#srch-btn");
 const searchCity = document.querySelector("#citySearch");
 const apiKey = "e2d838addde4c3e26a61a53bde32a41c";
 
-// EventListener for "Search" button to be clicked
-searchButton.addEventListener("click", function () {
-  const city = searchCity.value;
-  console.log("city on click", city);
-  currentWeather(city);
-  searchCity.value = ""; // Clear the input field after the search
-});
-
-// EventListener for "Enter" key to be pressed
-searchCity.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    const city = searchCity.value;
-    saveCityToLocalStorage(city); // Save city to local storage
-    currentWeather(city);
-    searchCity.value = ""; // Clear the input field after the search
-  }
-});
+// Event listeners
+searchButton.addEventListener("click", handleSearchButtonClick);
+searchCity.addEventListener("keypress", handleSearchEnterPress);
 
 // Saving searches to Local Storage
 function saveCityToLocalStorage(city) {
-  // Retrieve existing searches from local storage or initialize an empty array
   const searches = JSON.parse(localStorage.getItem("searches")) || [];
-  // Add the new city to the array if it's not already present
   if (!searches.includes(city)) {
     searches.push(city);
     localStorage.setItem("searches", JSON.stringify(searches));
-    // Update the search buttons in the UI
     renderSearchButtons();
   }
 }
 
+// Function to handle search button click
+function handleSearchButtonClick() {
+  const city = searchCity.value.trim();
+  if (city !== "") {
+    saveCityToLocalStorage(city);
+    currentWeather(city);
+    searchCity.value = ""; // Clear the input field after the search
+  }
+}
+
+// Function to handle enter key press
+function handleSearchEnterPress(e) {
+  if (e.key === "Enter") {
+    const city = searchCity.value.trim();
+    if (city !== "") {
+      saveCityToLocalStorage(city);
+      currentWeather(city);
+      searchCity.value = ""; // Clear the input field after the search
+    }
+  }
+}
+
+// Display current weather
 function currentWeather(city) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`
   )
-    .then((res) => {
-      console.log(res);
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((wData) => {
-      console.log("data from weather API", wData);
-
-      const currentDate = dayjs().format("MMMM D, YYYY"); // current date
-      const currentIcon = wData.weather[0].icon; // current weather icon
-      // const currentWeather = wData.weather[0].description; // current weather description
-      const currentTemp = wData.main.temp; // current temperature in fahrenheit
-      const currentHumidity = wData.main.humidity; // current humidity
-      const currentWind = wData.wind.speed; // current wind speed
+      const currentDate = dayjs().format("MMMM D, YYYY");
+      const currentIcon = wData.weather[0].icon;
+      const currentTemp = wData.main.temp;
+      const currentHumidity = wData.main.humidity;
+      const currentWind = wData.wind.speed;
       const weatherIconSrc = `https://openweathermap.org/img/w/${currentIcon}.png`;
-
-      // console.log(currentIcon);
-      // console.log(currentDate);
-      // console.log(currentWeather);
-      // console.log(currentTemp);
-      // console.log(currentHumidity);
-      // console.log(currentWind);
 
       const todaysWeatherCardElement =
         document.getElementById("todaysWeatherCard");
@@ -76,34 +69,18 @@ function currentWeather(city) {
       todaysWeatherCardElement.innerHTML = todaysWeatherCard;
 
       fiveDayWeather(wData.coord.lat, wData.coord.lon);
-      //     const icon = document.createElement("img");
-      //     icon.setAttribute(
-      //       "src",
-      //       `https://openweathermap.org/img/wn/${imgCode}@2x.png`
-      //     );
-      //     weatherWidget(
-      //       imgCode,
-      //       "Temperature: " + temperature + " °F",
-      //       "Humidity: " + humidity + " %",
-      //       currentDate,
-      //       "Wind Speed: " + currentWind + " mph",
-      //       cityName
-      //     );
     });
 }
 
+// Fetch five day weather forecast
 function fiveDayWeather(lat, long) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`
   )
-    .then((res) => {
-      console.log(res);
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((futureForecast) => {
       console.log(futureForecast);
-      //instead of returning future forecast, just call after doing "the stuff"
-      return futureForecast;
+      // Handle future forecast data as needed
     });
 }
 
@@ -114,9 +91,14 @@ function renderSearchButtons() {
 
   for (let i = 0; i < recentSearches.length; i++) {
     const city = recentSearches[i];
-    const buttonIndex = i % searchButtons.length; // Calculate the index of the button to update
+    const buttonIndex = i % searchButtons.length;
 
-    searchButtons[buttonIndex].textContent = city; // Update the text content of the button
+    searchButtons[buttonIndex].textContent = city;
+    searchButtons[buttonIndex].setAttribute("data-city", city); // Add data attribute
+    searchButtons[buttonIndex].addEventListener("click", function () {
+      const clickedCity = this.getAttribute("data-city"); // Retrieve city from data attribute
+      currentWeather(clickedCity);
+    });
   }
 }
 
