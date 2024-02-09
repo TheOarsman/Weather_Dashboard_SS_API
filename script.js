@@ -18,14 +18,39 @@ function currentWeather(city) {
     })
     .then((wData) => {
       console.log("data from weather API", wData);
-      const forecast = fiveDayWeather(wData.coord.lat, wData.coord.lon);
+
       const currentDate = dayjs().format("MMMM D, YYYY"); // current date
       const currentIcon = wData.weather[0].icon; // current weather icon
-      const currentWeather = wData.weather[0].description; // current weather description
-      const currentTemp = wData.main.temp; // current temperature in farenheit
+      // const currentWeather = wData.weather[0].description; // current weather description
+      const currentTemp = wData.main.temp; // current temperature in fahrenheit
       const currentHumidity = wData.main.humidity; // current humidity
       const currentWind = wData.wind.speed; // current wind speed
+      const weatherIconSrc = `https://openweathermap.org/img/w/${currentIcon}.png`;
 
+      // console.log(currentIcon);
+      // console.log(currentDate);
+      // console.log(currentWeather);
+      // console.log(currentTemp);
+      // console.log(currentHumidity);
+      // console.log(currentWind);
+
+      const todaysWeatherCardElement =
+        document.getElementById("todaysWeatherCard");
+      const todaysWeatherCard = `<div class="card">
+  <div class="card-body">
+    <h3 class="currentSearch">${city}</h3>
+    <h4 class="currentTime">${currentDate}</h4>
+    <br />
+    <img src="${weatherIconSrc}" alt="weather image">
+    <br />
+    <div class="currentTemp">Temp: ${currentTemp}</div>
+    <div class="currentWind">Wind Speed: ${currentWind}</div>
+    <div class="currentHumid"> Humidity: ${currentHumidity}</div>
+  </div>
+</div>`;
+      todaysWeatherCardElement.innerHTML = todaysWeatherCard;
+
+      fiveDayWeather(wData.coord.lat, wData.coord.lon);
       //     const icon = document.createElement("img");
       //     icon.setAttribute(
       //       "src",
@@ -50,31 +75,9 @@ function fiveDayWeather(lat, long) {
       console.log(res);
       return res.json();
     })
-    .then((data) => {
-      console.log(data);
+    .then((futureForecast) => {
+      console.log(futureForecast);
+      //instead of returning future forecast, just call after doing "the stuff"
+      return futureForecast;
     });
 }
-
-// locationInput.addEventListener("keyup", function (event) {
-//   if (event.key === "Enter") {
-//     event.preventDefault();
-//     searchButton.click();
-//     document.location.href = "#mapWeatherdata"; // to prevent page from going to recent searches after clicking enter
-//   }
-// });
-
-// /* display current weather */
-// function displayCurrentWeather(data) {
-//   // Update the HTML elements with the relevant weather data
-//   document.querySelector("#todaysWeatherCard .currentSearch").textContent =
-//     data.name;
-//   document.querySelector(
-//     "#todaysWeatherCard .currentTemp"
-//   ).textContent = `Temperature: ${data.main.temp} °F`;
-//   document.querySelector(
-//     "#todaysWeatherCard .currentWind"
-//   ).textContent = `Wind Speed: ${data.wind.speed} mph`;
-//   document.querySelector(
-//     "#todaysWeatherCard .currentHumidy"
-//   ).textContent = `Humidity: ${data.main.humidity}%`;
-// }
