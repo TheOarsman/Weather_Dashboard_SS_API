@@ -58,13 +58,13 @@ function currentWeather(city) {
       const currentIcon = wData.weather[0].icon;
       console.log("Current weather icon:", currentIcon);
       const currentTemp = wData.main.temp;
-      const currentFeelsLIke = wData.main.feels_like;
+      const currentFeelsLike = wData.main.feels_like;
       const currentHumidity = wData.main.humidity;
       const currentWind = wData.wind.speed;
       const weatherIconSrc = `https://openweathermap.org/img/w/${currentIcon}.png`;
 
-      // Set background image or animation based on weather condition
-      setBackgroundBasedOnWeather(currentIcon);
+      // // Set background image or animation based on weather condition
+      // setBackgroundBasedOnWeather(currentIcon, "todaysWeatherCard");
 
       //element for populating main card with current weather
       const todaysWeatherCardElement =
@@ -76,52 +76,58 @@ function currentWeather(city) {
     <!-- Adjust the width and height of the image using inline style -->
     <img src="${weatherIconSrc}" alt="weather image" style="width: 70px; height: 70px;">
     <h5>Temp(°F): ${currentTemp}</h5>
-    <h5>Feels Like(°F): ${currentFeelsLIke}</h5>
+    <h5>Feels Like(°F): ${currentFeelsLike}</h5>
     <h5>Wind Speed(MPH): ${currentWind}</h5>
     <h5> Humidity: ${currentHumidity}%</h5>
   </div>
 </div>`;
       todaysWeatherCardElement.innerHTML = todaysWeatherCard;
 
-      fiveDayWeather(city, wData.coord.lat, wData.coord.lon);
+      fiveDayWeather(city, wData.coord.lat, wData.coord.lon, currentIcon);
     });
 }
 
-function setBackgroundBasedOnWeather(iconCode) {
-  console.log("Setting background based on weather with icon code:", iconCode);
-  const body = document.querySelector("body");
-  // Defining mapping of weather condition to background animation
-  switch (iconCode) {
-    case "11d":
-      body.style.backgroundImage = "assets/images/Thunderstorm.gif";
-      break;
-    case "09d":
-    case "10d":
-    case "13d":
-      body.style.backgroundImage = "assets/images/Snow.gif";
-      break;
-    case "13d":
-      body.style.backgroundImage = "assets/images/Fog_Haze.gif";
-      break;
-    case "01d":
-    case "01n":
-      body.style.backgroundImage = "assets/images/Clear.gif";
-      break;
-    case "02d":
-    case "02n":
-    case "03d":
-    case "03nd":
-    case "04d":
-    case "04d":
-      body.style.backgroundImage = "assets/images/Cloudy.gif";
-    default:
-      body.style.backgroundImage =
-        "assets/images/C5F02B2D-1E76-4AD7-A376-75569D65BD94.png";
-  }
-}
+// function setBackgroundBasedOnWeather(iconCode, targetElementId) {
+//   console.log("Setting background based on weather with icon code:", iconCode);
+//   const element = document.getElementById(targetElementId);
+//   if (!element) {
+//     console.error(`Target element with ID "${targetElementId}" not found.`);
+//     return;
+//   }
+//   // Defining mapping of weather condition to background animation
+//   switch (iconCode) {
+//     case "11d":
+//       element.style.backgroundImage = "url(assets/images/Thunderstorm.gif)";
+//       break;
+//     case "09d":
+//     case "10d":
+//     case "13d":
+//       element.style.backgroundImage = "url(assets/images/Snow.gif)";
+//       break;
+//     case "13d":
+//       element.style.backgroundImage = "url(assets/images/Fog_Haze.gif)";
+//       break;
+//     case "01d":
+//     case "01n":
+//       element.style.backgroundImage = "url(assets/images/Clear.gif)";
+//       break;
+//     case "02d":
+//     case "02n":
+//     case "03d":
+//     case "03nd":
+//     case "04d":
+//     case "04d":
+//       element.style.backgroundImage = "url(assets/images/Cloudy.gif)";
+//       break;
+//     default:
+//       element.style.backgroundImage =
+//         "url(assets/images/C5F02B2D-1E76-4AD7-A376-75569D65BD94.png)";
+//       break;
+//   }
+// }
 
 // Fetch five day weather forecast
-function fiveDayWeather(city, lat, long) {
+function fiveDayWeather(city, lat, long, currentIcon) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`
   )
@@ -130,10 +136,10 @@ function fiveDayWeather(city, lat, long) {
       console.log("Five day weather forecast data:", futureForecast);
 
       // Loop over each day's forecast data and set background image or animation
-      futureForecast.list.forEach((forecast) => {
-        const iconCode = forecast.weather[0].icon;
-        setBackgroundBasedOnWeather(iconCode);
-      });
+      // futureForecast.list.forEach((forecast) => {
+      //   const iconCode = forecast.weather[0].icon;
+      //   setBackgroundBasedOnWeather(iconCode);
+      // });
       //data pulled from Weather API for day 1 Forecast
       const day1ForecastDate = dayjs(futureForecast.list[6].dt_txt).format(
         "MMMM D, YYYY"
@@ -258,11 +264,12 @@ function fiveDayWeather(city, lat, long) {
 </div>`;
       day5WeatherCardElement.innerHTML = day5WeatherCard;
 
-      setBackgroundBasedOnWeather(day1ForecastIcon);
-      setBackgroundBasedOnWeather(day2ForecastIcon);
-      setBackgroundBasedOnWeather(day3ForecastIcon);
-      setBackgroundBasedOnWeather(day4ForecastIcon);
-      setBackgroundBasedOnWeather(day5ForecastIcon);
+      // setBackgroundBasedOnWeather(currentIcon, "todaysWeatherCard");
+      // setBackgroundBasedOnWeather(day1ForecastIcon, "day1WeatherCard");
+      // setBackgroundBasedOnWeather(day2ForecastIcon, "day2WeatherCard");
+      // setBackgroundBasedOnWeather(day3ForecastIcon, "day3WeatherCard");
+      // setBackgroundBasedOnWeather(day4ForecastIcon, "day4WeatherCard");
+      // setBackgroundBasedOnWeather(day5ForecastIcon, "day5WeatherCard");
     });
 }
 
