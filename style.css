@@ -36,6 +36,19 @@ main {
   padding-top: 20px;
 }
 
+body {
+  background-color: your_color_here;
+}
+
+/* For specific elements */
+/* .header {
+  background-color: your_color_here;
+} */
+
+.card {
+  background-color: rgb(37, 180, 237);
+}
+
 /* Will be used (someday) for gif backgrounds
 .card {
   background-color: transparent;
