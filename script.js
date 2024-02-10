@@ -51,15 +51,20 @@ function currentWeather(city) {
   )
     .then((res) => res.json())
     .then((wData) => {
-      console.log(wData);
+      console.log("Current weather data:", wData);
+
       //data pulled from Weather API for current day Forecast
       const currentDate = dayjs().format("MMMM D, YYYY");
       const currentIcon = wData.weather[0].icon;
+      console.log("Current weather icon:", currentIcon);
       const currentTemp = wData.main.temp;
       const currentFeelsLIke = wData.main.feels_like;
       const currentHumidity = wData.main.humidity;
       const currentWind = wData.wind.speed;
       const weatherIconSrc = `https://openweathermap.org/img/w/${currentIcon}.png`;
+
+      // Set background image or animation based on weather condition
+      setBackgroundBasedOnWeather(currentIcon);
 
       //element for populating main card with current weather
       const todaysWeatherCardElement =
@@ -82,6 +87,39 @@ function currentWeather(city) {
     });
 }
 
+function setBackgroundBasedOnWeather(iconCode) {
+  console.log("Setting background based on weather with icon code:", iconCode);
+  const body = document.querySelector("body");
+  // Defining mapping of weather condition to background animation
+  switch (iconCode) {
+    case "11d":
+      body.style.backgroundImage = "assets/images/Thunderstorm.gif";
+      break;
+    case "09d":
+    case "10d":
+    case "13d":
+      body.style.backgroundImage = "assets/images/Snow.gif";
+      break;
+    case "13d":
+      body.style.backgroundImage = "assets/images/Fog_Haze.gif";
+      break;
+    case "01d":
+    case "01n":
+      body.style.backgroundImage = "assets/images/Clear.gif";
+      break;
+    case "02d":
+    case "02n":
+    case "03d":
+    case "03nd":
+    case "04d":
+    case "04d":
+      body.style.backgroundImage = "assets/images/Cloudy.gif";
+    default:
+      body.style.backgroundImage =
+        "assets/images/C5F02B2D-1E76-4AD7-A376-75569D65BD94.png";
+  }
+}
+
 // Fetch five day weather forecast
 function fiveDayWeather(city, lat, long) {
   fetch(
@@ -89,12 +127,19 @@ function fiveDayWeather(city, lat, long) {
   )
     .then((res) => res.json())
     .then((futureForecast) => {
-      console.log(futureForecast);
+      console.log("Five day weather forecast data:", futureForecast);
+
+      // Loop over each day's forecast data and set background image or animation
+      futureForecast.list.forEach((forecast) => {
+        const iconCode = forecast.weather[0].icon;
+        setBackgroundBasedOnWeather(iconCode);
+      });
       //data pulled from Weather API for day 1 Forecast
       const day1ForecastDate = dayjs(futureForecast.list[6].dt_txt).format(
         "MMMM D, YYYY"
       );
       const day1ForecastIcon = futureForecast.list[6].weather[0].icon;
+      console.log("Day 1 forecast icon:", day1ForecastIcon);
       const day1ForecastTemp = futureForecast.list[6].main.temp;
       const day1ForecastHumidity = futureForecast.list[6].main.humidity;
       const day1ForecastWind = futureForecast.list[6].wind.speed;
@@ -118,6 +163,7 @@ function fiveDayWeather(city, lat, long) {
         "MMMM D, YYYY"
       );
       const day2ForecastIcon = futureForecast.list[14].weather[0].icon;
+      console.log("Day 2 forecast icon:", day2ForecastIcon);
       const day2ForecastTemp = futureForecast.list[14].main.temp;
       const day2ForecastHumidity = futureForecast.list[14].main.humidity;
       const day2ForecastWind = futureForecast.list[14].wind.speed;
@@ -142,6 +188,7 @@ function fiveDayWeather(city, lat, long) {
         "MMMM D, YYYY"
       );
       const day3ForecastIcon = futureForecast.list[22].weather[0].icon;
+      console.log("Day 3 forecast icon:", day3ForecastIcon);
       const day3ForecastTemp = futureForecast.list[22].main.temp;
       const day3ForecastHumidity = futureForecast.list[22].main.humidity;
       const day3ForecastWind = futureForecast.list[22].wind.speed;
@@ -166,6 +213,7 @@ function fiveDayWeather(city, lat, long) {
         "MMMM D, YYYY"
       );
       const day4ForecastIcon = futureForecast.list[30].weather[0].icon;
+      console.log("Day 4 forecast icon:", day4ForecastIcon);
       const day4ForecastTemp = futureForecast.list[30].main.temp;
       const day4ForecastHumidity = futureForecast.list[30].main.humidity;
       const day4ForecastWind = futureForecast.list[30].wind.speed;
@@ -190,6 +238,7 @@ function fiveDayWeather(city, lat, long) {
         "MMMM D, YYYY"
       );
       const day5ForecastIcon = futureForecast.list[38].weather[0].icon;
+      console.log("Day 5 forecast icon:", day5ForecastIcon);
       const day5ForecastTemp = futureForecast.list[38].main.temp;
       const day5ForecastHumidity = futureForecast.list[38].main.humidity;
       const day5ForecastWind = futureForecast.list[38].wind.speed;
@@ -208,6 +257,12 @@ function fiveDayWeather(city, lat, long) {
   </div>
 </div>`;
       day5WeatherCardElement.innerHTML = day5WeatherCard;
+
+      setBackgroundBasedOnWeather(day1ForecastIcon);
+      setBackgroundBasedOnWeather(day2ForecastIcon);
+      setBackgroundBasedOnWeather(day3ForecastIcon);
+      setBackgroundBasedOnWeather(day4ForecastIcon);
+      setBackgroundBasedOnWeather(day5ForecastIcon);
     });
 }
 
