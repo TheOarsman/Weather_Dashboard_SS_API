@@ -291,8 +291,19 @@ function renderSearchButtons() {
       const clickedCity = this.getAttribute("data-city"); // Retrieve city from data attribute
       currentWeather(clickedCity);
     });
+
+    // Show the button if there's a city associated with it
+    if (city) {
+      searchButtons[i].removeAttribute("hidden");
+    }
   }
 }
+
+// Hide the initial search buttons
+const initialSearchButtons = document.querySelectorAll(".recent-search-button");
+initialSearchButtons.forEach((button) => {
+  button.setAttribute("hidden", true);
+});
 
 // Call the renderSearchButtons function after defining it
 renderSearchButtons();
