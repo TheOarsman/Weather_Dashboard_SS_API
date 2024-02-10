@@ -40,20 +40,6 @@ body {
   background-color: your_color_here;
 }
 
-.navbar-brand {
-  font-size: 2rem;
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-  color: white;
-}
-
-@media (max-width: 576px) {
-  .navbar-brand {
-    font-size: 1.5rem;
-  }
-}
-
 /* For specific elements */
 /* .header {
   background-color: your_color_here;
