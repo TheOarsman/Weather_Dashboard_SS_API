@@ -8,6 +8,8 @@ searchCity.addEventListener("keypress", handleSearchEnterPress);
 
 // Saving searches to Local Storage
 function saveCityToLocalStorage(city) {
+  // Capitalize the first letter of the city name
+  city = city.charAt(0).toUpperCase() + city.slice(1);
   const searches = JSON.parse(localStorage.getItem("searches")) || [];
 
   // Ensure only the latest 8 searches are stored
