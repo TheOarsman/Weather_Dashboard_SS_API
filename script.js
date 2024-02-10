@@ -46,6 +46,8 @@ function handleSearchEnterPress(e) {
 
 // Display current weather
 function currentWeather(city) {
+  // Capitalize the first letter of the city name
+  city = city.charAt(0).toUpperCase() + city.slice(1);
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`
   )
