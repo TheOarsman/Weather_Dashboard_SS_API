@@ -32,6 +32,13 @@
   }
 }
 
+/* creates gab between last search button and current weather card when flexed down */
+@media (max-width: 576px) {
+  #recent-searches {
+    margin-bottom: 20px;
+  }
+}
+
 nav,
 header {
   padding-bottom: 20px;
@@ -45,14 +52,14 @@ body {
   background-color: your_color_here;
 }
 
+.card {
+  background-color: rgb(37, 180, 237);
+}
+
 /* For specific elements */
 /* .header {
   background-color: your_color_here;
 } */
-
-.card {
-  background-color: rgb(37, 180, 237);
-}
 
 /* Will be used (someday) for gif backgrounds
 .card {
