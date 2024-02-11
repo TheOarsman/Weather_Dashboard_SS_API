@@ -56,6 +56,23 @@ body {
   background-color: rgb(37, 180, 237);
 }
 
+@media (max-width: 576px) {
+  .col {
+    flex-basis: 100%; /* Ensure each card takes up full width on smaller screens */
+  }
+
+  .row {
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  }
+
+  #day1WeatherCard,
+  #day2WeatherCard,
+  #day3WeatherCard,
+  #day4WeatherCard {
+    margin-bottom: 20px; /* Adjust the value as needed to create a gap between cards */
+  }
+}
+
 /* For specific elements */
 /* .header {
   background-color: your_color_here;
