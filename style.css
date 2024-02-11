@@ -74,10 +74,10 @@ body {
   }
 }
 
-/* Flex behavior for computer screens */
 @media (min-width: 768px) {
   .row {
     display: flex;
+    align-items: stretch; /* Ensure all flex items have the same height */
   }
 
   #day1WeatherCard,
