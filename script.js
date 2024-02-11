@@ -8,8 +8,12 @@ searchCity.addEventListener("keypress", handleSearchEnterPress);
 
 // Saving searches to Local Storage
 function saveCityToLocalStorage(city) {
-  // Capitalize the first letter of the city name
-  city = city.charAt(0).toUpperCase() + city.slice(1);
+  // Capitalize the first letter of each word in the city name
+  city = city
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
   const searches = JSON.parse(localStorage.getItem("searches")) || [];
 
   // Ensure only the latest 8 searches are stored
@@ -48,7 +52,7 @@ function handleSearchEnterPress(e) {
 
 // Display current weather
 function currentWeather(city) {
-  // Capitalize the first letter of the city name
+  // Capitalize the first letter of each word in the city name
   city = city
     .toLowerCase()
     .split(" ")
@@ -148,6 +152,7 @@ function fiveDayWeather(city, lat, long, currentIcon) {
       //   const iconCode = forecast.weather[0].icon;
       //   setBackgroundBasedOnWeather(iconCode);
       // });
+
       //data pulled from Weather API for day 1 Forecast
       const day1ForecastDate = dayjs(futureForecast.list[6].dt_txt).format(
         "MMMM D, YYYY"
