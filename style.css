@@ -95,6 +95,38 @@ body {
   }
 }
 
+.footer-container {
+  background-color: #f0f0f0; /* Set background color */
+  padding: 20px; /* Add padding around the icons */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the container horizontally */
+}
+
+.footer-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Remove default margin */
+  display: flex;
+  justify-content: space-between; /* Spread out the icons evenly */
+  max-width: fit-content; /* Set maximum width to fit the content */
+}
+
+.footer-icons li {
+  margin: 0 5px; /* Adjust the spacing between icons */
+}
+
+.footer-icons img {
+  width: 30px; /* Adjust the width of the icons */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.copyright {
+  margin: 0; /* Remove any default margin */
+  font-size: 14px; /* Adjust the font size */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+}
+
 /* For specific elements */
 /* .header {
   background-color: your_color_here;
