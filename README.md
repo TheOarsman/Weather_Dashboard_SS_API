@@ -4,7 +4,11 @@
 
 [Weather Dashboard](https://theoarsman.github.io/Weather_Dashboard_SS_API/)<br>
 
-![Weather Dashboard](assets/images/WeatherDashboardStart.png)
+[YouTube: Weather Dashboard Video Demonstration](https://youtu.be/g7lJFkv_omw)
+
+## Desktop Application
+
+![Weather Dashboard](assets/images/Desktop.png)
 
 ## Description
 
@@ -12,10 +16,24 @@ Developers, ever tasked with integrating third-party APIs, can now effortlessly 
 
 Utilizing localStorage, the dashboard ensures persistent data storage, maintaining user preferences and settings across sessions.
 
+## iPad Application
+
+<img src="assets/images/iPad 2.png" width="275" height="325" alt="iPhone image 1">
+<img src="assets/images/iPad 1.png" width="400" height="250" alt="iPhone image 1">
+
+## iPhone Application
+
+<img src="assets/images/iPhone 1.png" width="200" height="400" alt="iPhone image 1">
+<img src="assets/images/iPhone 2.png" width="200" height="400" alt="iPhone image 2">
+<img src="assets/images/iPhone 3.png" width="200" height="400" alt="iPhone image 3">
+
 ## Table of Contents
 
 - [Weather Dashboard](#weather-dashboard)<br>
+- [Desktop Application](#desktop-application)<br>
 - [Description](#description)<br>
+- [iPad Application](#ipad-application)<br>
+- [iPhone Application](#iphone-application)<br>
 - [Table of Contents](#tabel-of-contents)<br>
 - [User Story](#user-story)<br>
 - [Acceptance Criteria](#acceptance-criteria)<br>
