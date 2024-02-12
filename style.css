@@ -95,11 +95,20 @@ body {
   }
 }
 
+.footer-wrapper {
+  background-color: transparent; /* Set background color */
+  padding: 20px; /* Add padding around the footer */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the container horizontally */
+}
+
 .footer-container {
   background-color: #f0f0f0; /* Set background color */
   padding: 20px; /* Add padding around the icons */
   display: flex; /* Use flexbox */
-  justify-content: center; /* Center the container horizontally */
+  justify-content: space-between; /* Spread out the content */
+  align-items: center; /* Center vertically */
+  max-width: fit-content; /* Set maximum width to fit the content */
 }
 
 .footer-icons {
@@ -107,8 +116,6 @@ body {
   padding: 0;
   margin: 0; /* Remove default margin */
   display: flex;
-  justify-content: space-between; /* Spread out the icons evenly */
-  max-width: fit-content; /* Set maximum width to fit the content */
 }
 
 .footer-icons li {
@@ -123,8 +130,6 @@ body {
 .copyright {
   margin: 0; /* Remove any default margin */
   font-size: 14px; /* Adjust the font size */
-  display: flex; /* Use flexbox */
-  align-items: center; /* Center vertically */
 }
 
 /* For specific elements */
