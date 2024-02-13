@@ -91,8 +91,6 @@ Although I successfully deployed the feature, I encountered styling challenges i
 
 ## License
 
-PLACEHOLDER UNTIL WE DECIDE WHICH LICENSE TO WE WANT TO USE
-
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 MIT License
